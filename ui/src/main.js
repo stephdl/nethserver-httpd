@@ -31,6 +31,7 @@ import Virtualhosts from './views/Virtualhosts.vue'
 import Proxypass from './views/Proxypass.vue'
 import Logs from './views/Logs.vue'
 import About from './views/About.vue'
+import Vsftpd from './views/Vsftpd.vue'
 
 import UtilService from "./services/util"
 Vue.mixin(UtilService)
@@ -52,6 +53,7 @@ const router = new Router({
       { path: '/dashboard', component: Dashboard },
       { path: '/virtualhosts', component: Virtualhosts },
       { path: '/proxypass', component: Proxypass },
+      { path: '/vsftpd', component: Vsftpd },
       { path: '/logs', component: Logs },
       { path: '/about', name: 'about', component: About }
     ]
