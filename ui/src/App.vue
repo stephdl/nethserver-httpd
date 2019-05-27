@@ -45,6 +45,13 @@
                 </a>
             </router-link>
             <li class="li-empty"></li>
+            <router-link tag="li" to="/vsftpd" active-class="active" class="list-group-item">
+                <a>
+                    <span class="fa pficon-import"></span>
+                    <span class="list-group-item-value">{{$t('vsftpd.title')}}</span>
+                </a>
+            </router-link>
+            <li class="li-empty"></li>
             <router-link tag="li" to="/logs" active-class="active" class="list-group-item">
                 <a>
                     <span class="fa fa-list"></span>
