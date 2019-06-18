@@ -87,7 +87,7 @@ Statistics on the apache service based on Apache mod_status
 
 ## virtualhosts
 
-API to create, validate and save  virtualhost settings inside the vhosts database
+API to read, validate and save  virtualhost settings to the vhosts database
 
 ### Input
 
@@ -149,7 +149,7 @@ echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"sd
 
 ## reverse proxy
 
-API to create, validate and save  reverse proxy settings from the proxypass database
+API to read, validate and save  reverse proxy settings to the proxypass database
 
 ### Input
 
