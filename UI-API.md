@@ -204,9 +204,9 @@ echo '{"action":"virtualhost"}' | /usr/bin/sudo /usr/libexec/nethserver/api/neth
 - `update` the input once validated to proxypass database
 
 ```bash
- echo '{"action":"edit","proxypass":{"name":"toto.com","Description":"reverse2","Target":"http://plop.com","HTTP":"no","HTTPS":"yes","PreserveHost":"yes","SslCertificate":"","ValidFrom":[""],"CertVerification":"no","type":"VhostReverse"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/validate | jq
+ echo '{"action":"edit","proxypass":{"name":"toto.com","Description":"reverse2","Target":"http://plop.com","HTTP":"no","HTTPS":"yes","PreserveHost":"yes","SslCertificate":"","ValidFrom":[""],"CertVerification":"no","type":"VhostReverse"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/update | jq
 ```
 
 ```bash
- echo '{"action":"edit","proxypass":{"name":"plop","Description":"vhost3","Target":"http://toto.com","HTTP":"no","HTTPS":"yes","PreserveHost":"","SslCertificate":"","ValidFrom":[""],"CertVerification":"","type":"ProxyPass"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/validate | jq
+ echo '{"action":"edit","proxypass":{"name":"plop","Description":"vhost3","Target":"http://toto.com","HTTP":"no","HTTPS":"yes","PreserveHost":"","SslCertificate":"","ValidFrom":[""],"CertVerification":"","type":"ProxyPass"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/update | jq
 
