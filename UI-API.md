@@ -168,6 +168,7 @@ Invocation example:
 ```bash
 echo '{"action":"virtualhost"}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/read | jq
 ```
+To differentiate the two types of reverse proxy, the name starts by a `/` for a proxypass (not saved in esmith databse)
 
 ```json
 {
