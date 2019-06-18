@@ -138,13 +138,21 @@ echo '{"action":"virtualhost"}' | /usr/bin/sudo /usr/libexec/nethserver/api/neth
 - `validate` the input before to be saved
 
 ```bash
-echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/validate | jq
+echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/update | jq
 ```
 
 - `update` the input once validated to vhosts database
 
+For the creation, `"action":"create"` is used, `"action":"edit"` for all modifications after
+
 ```bash
-echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/validate | jq
+echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/update | jq
+```
+
+- `delete` the virtualhost
+
+```bash
+echo '{"action":"delete","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/update | jq
 ```
 
 ## reverse proxy
@@ -203,10 +211,18 @@ echo '{"action":"virtualhost"}' | /usr/bin/sudo /usr/libexec/nethserver/api/neth
 
 - `update` the input once validated to proxypass database
 
+For the creation, `"action":"create"` is used, `"action":"edit"` for all modifications after
+
 ```bash
  echo '{"action":"edit","proxypass":{"name":"toto.com","Description":"reverse2","Target":"http://plop.com","HTTP":"no","HTTPS":"yes","PreserveHost":"yes","SslCertificate":"","ValidFrom":[""],"CertVerification":"no","type":"VhostReverse"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/update | jq
 ```
 
 ```bash
  echo '{"action":"edit","proxypass":{"name":"plop","Description":"vhost3","Target":"http://toto.com","HTTP":"no","HTTPS":"yes","PreserveHost":"","SslCertificate":"","ValidFrom":[""],"CertVerification":"","type":"ProxyPass"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/update | jq
+```
 
+- `delete` the reverse proxy
+
+```bash
+ echo '{"action":"delete","proxypass":{"name":"plop","Description":"vhost3","Target":"http://toto.com","HTTP":"no","HTTPS":"yes","PreserveHost":"","SslCertificate":"","ValidFrom":[""],"CertVerification":"","type":"ProxyPass"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/proxypass/update | jq
+ ```
