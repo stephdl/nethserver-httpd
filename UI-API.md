@@ -1,6 +1,6 @@
 # nethserver-httpd
 
-NethServer configuration of apache (virtualhosts and reverse proxy) and vsftpd
+API documentation of the cockpit server-manager of NethServer (integration of apache virtualhosts/reverse proxy and vsftpd)
 
 ## Dashboard
 
