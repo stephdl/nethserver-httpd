@@ -117,7 +117,7 @@ echo '{"action":"virtualhost"}' | /usr/bin/sudo /usr/libexec/nethserver/api/neth
       "type": "vhost",
       "Indexes": "disabled",
       "SslCertificate": "",
-      "Description": "sdcsc",
+      "Description": "vhost1",
       "Access": "private"
     },
     {
@@ -138,13 +138,13 @@ echo '{"action":"virtualhost"}' | /usr/bin/sudo /usr/libexec/nethserver/api/neth
 - `validate` the input before to be saved
 
 ```bash
-echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"sdcsc","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/validate | jq
+echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/validate | jq
 ```
 
 - `update` the input once validated to vhosts database
 
 ```bash
-echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"sdcsc","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/validate | jq
+echo '{"action":"edit","virtualhost":{"name":"9f9e1ab8746cc26","Description":"vhost1","ServerNames":["tutu.com","plop.be"],"Access":"private","PasswordStatus":"disabled","PasswordValue":"","ForceSslStatus":"disabled","Indexes":"disabled","FtpStatus":"disabled","FtpPassword":"","SslCertificate":"","status":"enabled"}}' | /usr/bin/sudo /usr/libexec/nethserver/api/nethserver-httpd/virtualhost/validate | jq
 ```
 
 ## reverse proxy
