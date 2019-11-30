@@ -56,7 +56,7 @@
             <li>
               <a @click="toggleLock(item)">
                 <span
-                  :class="[item.status === 'disabled' ? 'fa fa-check' : 'pficon pficon-locked','span-right-margin']"
+                  :class="[item.status === 'disabled' ? 'fa fa-check' : 'fa fa-lock','span-right-margin']"
                 ></span>
                 {{ item.status === 'disabled' ? $t('virtualhost.item_enable_button') : $t('virtualhost.item_disable_button') }}
               </a>
@@ -64,7 +64,7 @@
             <li role="separator" class="divider"></li>
             <li>
               <a href="#" v-on:click="$emit('item-delete', item)">
-                <span class="fa pficon-delete span-right-margin"></span>
+                <span class="fa fa-times span-right-margin"></span>
                 {{ $t('virtualhost.item_delete_button') }}
               </a>
             </li>
@@ -75,7 +75,7 @@
       <div class="list-view-pf-main-info small-list">
         <div class="list-view-pf-left">
           <span
-            :class="[item.status === 'disabled' ? 'gray':'','fa list-view-pf-icon-sm fa-folder-open']"
+            :class="[item.status === 'disabled' ? 'gray':'','fa fa-folder list-view-pf-icon-sm']"
           ></span>
         </div>
         <div class="list-view-pf-body">
@@ -93,7 +93,41 @@
               </div>
             </div>
             <div class="list-group-item-text">
-              <div :class="[item.status === 'disabled' ? 'gray':'']">{{ item.Description }}</div>
+              <span :class="[item.status === 'disabled' ? 'gray':'']">{{ item.Description }}</span>
+                <div>
+                  <br/>
+                  <a  v-if="item.name !== 'default'"
+                    tabindex="0"
+                    href="#"
+                    @click="getWebRoot(item)"
+                    :id="'popover-'+item.name | sanitize"
+                    class="alert-link"
+                    data-toggle="popover"
+                    data-html="true"
+                    :title="$t('virtualhost.web_root_directory')"
+                    data-content
+                    data-trigger="click"
+                  >
+                    {{ $t('virtualhost.web_root_directory') }}
+                  </a>
+                  <a v-else
+                    tabindex="0"
+                    href="#"
+                    @click="getWebRoot(item)"
+                    :id="'popover-'+item.name | sanitize"
+                    class="alert-link"
+                    data-toggle="popover"
+                    data-html="true"
+                    :title="$t('virtualhost.web_root_directory')"
+                    data-content
+                    data-trigger="click"
+                  >
+                    {{ $t('virtualhost.web_root_directory') }}
+                  </a>
+              </div>
+            </div>
+            <div class="list-group-item-text">
+              <div :class="[item.status === 'disabled' ? 'gray':'']">{{ $t('virtualhost.php_version_' + item.PhpRhVersion) }}</div>
             </div>
           </div>
           <div class="list-view-pf-additional-info rules-info">
@@ -129,6 +163,9 @@ export default {
 
   methods: {
     toggleLock(item) {
+      // close popover
+      $('.popover').remove();
+
       var context = this;
       nethserver.notifications.success = context.$t(
         "virtualhost.virtualhost_" +
@@ -159,6 +196,42 @@ export default {
           console.error(error, data);
         }
       );
+    },
+    getWebRoot(item) {
+
+      var popover = $(
+        "#" + this.$options.filters.sanitize("popover-" + item.name)
+      ).data("bs.popover");
+
+      //close others popover except this
+      $('[data-toggle=popover]').on('click', function (e) {
+          $('[data-toggle=popover]').not(this).popover('hide');
+      });
+      
+      // closes all popovers if you click anywhere except on a popover
+      $('html').on('mouseup', function(e) {
+        if(!$(e.target).closest('.popover').length) {
+          $('.popover').each(function(){
+              $(this.previousSibling).popover('hide');
+          });
+        }
+      });
+      
+            
+      var path = '/var/lib/nethserver/vhost/'+item.name+'/';
+      var text = "";
+
+      if (item.name !== 'default') {
+        text =
+        '<div>' + 
+        '<code>'+ path + '</code>'+"</div>";
+      } else {
+        text =
+        '<div>' + 
+        '<code>/var/www/html/</code>'+"</div>";
+      }
+      popover.options.content = text;
+      popover.show();
     }
   }
 };
